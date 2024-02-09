@@ -1,7 +1,16 @@
+<script>
+	import Fizzbuzz from "$lib/Fizzbuzz.svelte";
+</script>
+
 <svelte:head>
 	<title>About</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
+
+<Fizzbuzz testProps={[1,2,3,4]}>
+	<p>Bonjour je suis le about</p>
+	
+</Fizzbuzz>
 
 <div class="text-column">
 	<h1>About this app</h1>

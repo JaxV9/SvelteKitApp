@@ -1,19 +1,46 @@
 <script lang="ts">
 	import { spring } from 'svelte/motion';
 
-	let count = 0;
+	let count: number = 0;
 
 	const displayed_count = spring();
 	$: displayed_count.set(count);
 	$: offset = modulo($displayed_count, 1);
 
+	//Like useEffect
+	$:double = count*2;
+
+	$:isOdd = count %2 === 1;
+
 	function modulo(n: number, m: number) {
 		// handle negative numbers
 		return ((n % m) + m) % m;
 	}
+
+	function substraction(e: any) {
+		console.log(e)
+		count--;
+	}
+
+	const fruitList: Array<string> = ['pomme', 'poire', 'orange', 'banane']
+
 </script>
 
+{#if isOdd === true}
+<p>Le chiffre est impair</p>
+{:else}
+<p>Le chiffre est pair</p>
+{/if}
+
+{#each fruitList as fruit, index}
+<ul>
+	<li>fruit numéro: {index+1} : {fruit}</li>
+</ul>
+{/each}
+
 <div class="counter">
+
+	{double}
 	<button on:click={() => (count -= 1)} aria-label="Decrease the counter by one">
 		<svg aria-hidden="true" viewBox="0 0 1 1">
 			<path d="M0,0.5 L1,0.5" />
